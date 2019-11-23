@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>The Easy User-Driven Cryptography Solution!</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="https://hroy.eu/bootstrap/docs/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    
+    <link href="../static/sender.css" rel="stylesheet">
+    
+  </head>
+ 
+  <body>
+ 
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="#">Send</a></li><br>
+            <li role="presentation" ><a href="showReceive">Receive</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Easy User-Driven Cryptograhy!</h3>
+      </div>
+ 
+      <div class="jumbotron">
+        <h1>Secure Your Message: </h1>
+        <form method="POST" action="/secure">
+        
+        <label for="message" class="sr-only">Message: </label> 
+        <input type="name" name="message" id="message" class="form-control" placeholder="Message" required autofocus>
+        
+        <label for="encryption_password" class="sr-only">Enter Password To Get Symmetric Key: </label> 
+        <input type="encryption_password" name="encryption_password" id="encryption_password" class="form-control" placeholder="Enter A Password To Generate Symmetric Key" required autofocus>
+	
+	<!-- Default unchecked -->
+	<div class="custom-control custom-checkbox">
+	    <input type="checkbox" class="custom-control-input" id="defaultUnchecked" name="hash" checked>
+	    <label class="custom-control-label" for="defaultUnchecked">hash</label>
+	</div>
+
+	<!-- Default checked -->
+	<div class="custom-control custom-checkbox">
+	  <input type="checkbox" class="custom-control-input" id="defaultChecked2" name="encrypt" >
+	  <label class="custom-control-label" for="defaultChecked2">encrypt</label>
+	</div>
+
+	<!-- Default indeterminate -->
+	<div class="custom-control custom-checkbox">
+	  <input type="checkbox" class="custom-control-input" id="defaultIndeterminate2" name="decrypt">
+	  <label class="custom-control-label" for="defaultIndeterminate2">sign</label>
+	</div>
+ 
+        <button id="btnSecure" class="btn btn-lg btn-primary btn-block" type="submit" >Secure!</button>
+      </form>
+      </div>
+
+ 
+      <footer class="footer">
+        <p>&copy; NTM (Nour Travis Mo :P) 2019</p>
+      </footer>
+ 
+    </div>
+  </body>
+</html>

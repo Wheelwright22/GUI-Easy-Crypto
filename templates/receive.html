@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>The Easy User-Driven Cryptography Solution!</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="https://hroy.eu/bootstrap/docs/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    
+    <link href="../static/sender.css" rel="stylesheet">
+    
+  </head>
+ 
+  <body>
+ 
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="showSend">Send</a></li>
+            <li role="presentation" ><a href="showReceive">Receive</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Easy User-Driven Cryptograhy!</h3>
+      </div>
+ 
+      <div class="jumbotron">
+      
+      
+        <h1>Decrypt a Message: </h1>
+        
+        <form method="POST" action="/decrypt">
+        
+        <label for="encrypted_message" class="sr-only">Enter Encrypted Message: </label> 
+        <input type="name" name="encrypted_message" id="encrypted_message" class="form-control" placeholder="Enter Encrypted Message" required autofocus>
+	
+		<label for="symmetric_key" class="sr-only">Enter Password To Get Symmetric Key: </label> 
+        <input type="password" name="symmetric_key" id="symmetric_key" class="form-control" placeholder="Enter Symmetric Key" required autofocus>
+
+		<button id="btnDecrypt" class="btn btn-lg btn-primary btn-block" type="submit" >Decrypt</button>
+      	</form>
+      	
+      	 
+      	 <br>
+      	 <h1>Verify Message Integrity: </h1>
+        <form method="POST" action="/verify_hash">
+        
+        <label for="myreceived_message" class="sr-only">Enter Received Message: </label> 
+        <input type="name" name="myreceived_message" id="myreceived_message" class="form-control" placeholder="Enter Received Message" required autofocus>
+
+		<label for="received_hash" class="sr-only">Enter Received Hash: </label> 
+        <input type="name" name="received_hash" id="received_hash" class="form-control" placeholder="Enter Received Hash" required autofocus>
+		
+		<button id="btnIntegrity" class="btn btn-lg btn-primary btn-block" type="submit" >Verify Hash</button>
+      	</form>
+      	
+      	
+      	<br>
+      	<h1>Verify Sender: </h1>
+        <form method="POST" action="/verify_signature"> 
+        
+        <label for="received_message" class="sr-only">Enter Received Message: </label> 
+        <input type="name" name="received_message" id="received_message" class="form-control" placeholder="Enter Received Message" required autofocus>
+	
+	    <label for="received_encrypted_hash" class="sr-only">Enter Received Encrypted Hash: </label> 
+        <input type="name" name="received_encrypted_hash" id="received_encrypted_hash" class="form-control" placeholder="Enter Recieved Encrypted Hash" required autofocus>
+	
+	    <label for="senders_public_key" class="sr-only">Enter Sender's Public Key: </label> 
+        <input type="name" name="senders_public_key" id="senders_public_key" class="form-control" placeholder="Enter Sender's Public Key" required autofocus>
+
+		<button id="btnDigitalSignature" class="btn btn-lg btn-primary btn-block" type="submit" >Verify Digital Signature</button>
+      	</form>
+      	
+      	
+      	
+      <footer class="footer">
+        <p>&copy; NTM (Nour Travis Mo :P) 2019</p>
+      </footer>
+ 
+    </div>
+  </body>
+</html>
