@@ -32,16 +32,16 @@ def secure():
 		
 	if request.form.get('encrypt'):			#If the Encrypt Button is Checked, Return The Result Of The SYMMETRIC Hash Function.
 		return(symmetric_scheme.generateSymmetricKey(encryption_password))
-		
+
+	if request.form.get('sign'):
+		print("entered function")
+		return(digital_signature.sign_message(message))
+	#NOT TESTED	
 	if request.form.get('hash') and request.form.get('encrypt'):			#If the Hash Button & Encrypt Button is Checked, Return The Result Of The SHA3 Hash Function & The Symmetric Key
 		return(symmetric_scheme.generateSymmetricKey(encryption_password, message), sha3.sha3hashing(message))
-		
+	return "nothing selected"
 		#encryption_password
 		
-	#	flash ('Hash ' + message)
-        #return render_template('index.html')
-	#return "Under Contrsution!"
-	#logic based on user choices go here to encrypt the message
 
 @app.route('/decrypt', methods=['GET', 'POST'])
 def decrypt():
@@ -62,12 +62,15 @@ def verify_hash():
 
 @app.route('/verify_signature', methods=['GET', 'POST'])
 def verify_signature():
+	digest=request.form['received_message']
+	return(digital_signature.verify_digital_signature(digest))
+
+	#DELETE BELOW IF ABOVE WORKS
+	#received_message = request.form['received_message']
+	#received_encrypted_hash = request.form['received_encrypted_hash']
+	#senders_public_key = request.form['senders_public_key']
 	
-	received_message = request.form['received_message']
-	received_encrypted_hash = request.form['received_encrypted_hash']
-	senders_public_key = request.form['senders_public_key']
-	
-	return(digital_signature.verify_digital_signature(received_message, received_encrypted_hash, senders_public_key))
+	#return(digital_signature.verify_digital_signature(received_message, received_encrypted_hash, senders_public_key))
 
 if __name__ == "__main__":  #This code makes it so that you don't have to use "Flask Run" to start the server. You can just run the python script directly: "python3 app.py"
 	app.run(debug=True)	# This makes it so that you don't have to set environment variable "export FLASK_DEBUG=1". So you don't have to stop/start your web server every time a change is made.
