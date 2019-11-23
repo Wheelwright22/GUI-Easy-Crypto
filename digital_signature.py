@@ -40,15 +40,17 @@ def sign_message(message):
 	# Load private key and sign message
 	signer = PKCS1_v1_5.new(private_key)
 	sig = signer.sign(digest)
-
-	return b64encode(sig)
+	
+	return (b64encode(sig), message)
+	#return_statement =  "message is " + message + "\n B64Encoded Signed Digest: " + b64encode(sig)
+	#return ("message is " + message + "\n B64Encoded Signed Digest: " + b64encode(sig))
 
 def verify_digital_signature(message, sig_b64):
 	#this should be global and shared out of bounds
-	private_key=false;
+	private_key= False
 	
 	digest=SHA256.new()
-	digest.update(message)
+	digest.update(bytes(message, 'utf-8'))
 	with open ("private_key.pem", "r") as myfile:
 		private_key = RSA.importKey(myfile.read())
 	# Load public key and verify message
@@ -56,7 +58,7 @@ def verify_digital_signature(message, sig_b64):
 	verified = verifier.verify(digest, b64decode(sig_b64))	
 	
 	if verified:
-		return "Sinature was successfully verified!"	
+		return "Signature was successfully verified!"	
 	else:
 		return "Signature FAILED to verify"
 

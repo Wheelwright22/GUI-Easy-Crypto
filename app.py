@@ -62,8 +62,11 @@ def verify_hash():
 
 @app.route('/verify_signature', methods=['GET', 'POST'])
 def verify_signature():
-	digest=request.form['received_message']
-	return(digital_signature.verify_digital_signature(digest))
+	msg=request.form['received_message']
+	b64_digest=request.form['received_encrypted_hash']
+	senders_public_key = request.form['senders_public_key']
+
+	return(digital_signature.verify_digital_signature(msg, b64_digest))
 
 	#DELETE BELOW IF ABOVE WORKS
 	#received_message = request.form['received_message']
