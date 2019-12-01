@@ -31,8 +31,8 @@ def secure():
 		return(sha3.sha3hashing(message))
 		
 	if request.form.get('encrypt'):			#If the Encrypt Button is Checked, Return The Result Of The SYMMETRIC Hash Function.
-		return(symmetric_scheme.generateSymmetricKey(encryption_password))
-
+		return"Encrypted Message: {}".format(symmetric_scheme.generateSymmetricKey2(message, encryption_password))
+		
 	if request.form.get('sign'):
 		print("entered function")
 		return(digital_signature.sign_message(message))
